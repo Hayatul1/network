@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Backlink Grid Pena Edukasi</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; background: #f9f9f9; }
+    .grid-backlink {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 16px;
+      padding: 10px;
+    }
+    .artikel {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+      transition: transform 0.2s ease;
+    }
+    .artikel:hover {
+      transform: scale(1.02);
+    }
+    .artikel img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .artikel h2 {
+      font-size: 16px;
+      margin: 10px;
+      color: #333;
+    }
+    .lihat-selengkapnya {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .lihat-selengkapnya button {
+      background: #007acc;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Artikel Terbaru Pena Edukasi</h1>
+  <div id="backlink-grid" class="grid-backlink"></div>
+  <div class="lihat-selengkapnya">
+    <button onclick="tampilkanLebihBanyak()">Lihat Selengkapnya</button>
+  </div>
+  <script defer>
+    const dataArtikel = [
+      {
+        url: "https://www.penaeducasi.com/2025/07/beras-bantuan-dan-sphp-tembus-pasar-rakyat.html",
+        img: "https://cdn1.penaeducasi.com/img/b/beras-sphp.jpg",
+        title: "Beras Bantuan SPHP Tembus Pasar Rakyat"
+      },
+      {
+        url: "https://www.penaeducasi.com/2025/07/sholat-syuruq-waktu-tata-cara-niat-dan-keutamaanya.html",
+        img: "https://cdn1.penaeducasi.com/img/b/sholat-syuruq.jpg",
+        title: "Sholat Syuruq: Waktu, Tata Cara, dan Keutamaannya"
+      },
+      {
+        url: "https://www.penaeducasi.com/2025/07/resep-kue-pukis-empuk-dan-mengembang.html",
+        img: "https://cdn1.penaeducasi.com/img/b/kue-pukis.jpg",
+        title: "Resep Kue Pukis Empuk dan Mengembang"
+      },
+      {
+        url: "https://www.penaeducasi.com/2025/07/bitcoin-siap-melejit-ini-3-pemicu-utama-menuju-rekor-baru.html",
+        img: "https://cdn1.penaeducasi.com/img/b/bitcoin.jpg",
+        title: "Bitcoin Melejit: 3 Pemicu Menuju Rekor Baru"
+      },
+      {
+        url: "https://www.penaeducasi.com/2025/07/resep-onde-onde-isi-kacang-hijau-yang-empuk-anti-gagal.html",
+        img: "https://cdn1.penaeducasi.com/img/b/onde-onde.jpg",
+        title: "Resep Onde-Onde Isi Kacang Hijau"
+      },
+      {
+        url: "https://www.penaeducasi.com/2025/07/resep-kue-cenil-singkong-warna-warni-legit-dan-kenyalnya-bikin-nagih.html",
+        img: "https://cdn1.penaeducasi.com/img/b/kue-cenil.jpg",
+        title: "Kue Cenil Singkong Warna-Warni Legit"
+      }
+    ];
+
+    let tampilAwal = 6;
+    let ditampilkan = 0;
+
+    function tampilkanLebihBanyak() {
+      const container = document.getElementById("backlink-grid");
+      const batch = dataArtikel.slice(ditampilkan, ditampilkan + tampilAwal);
+
+      batch.forEach(item => {
+        const el = document.createElement("div");
+        el.className = "artikel";
+        el.innerHTML = `
+          <a href="${item.url}" rel="dofollow" target="_blank">
+            <img src="${item.img}" alt="${item.title}" loading="lazy">
+            <h2>${item.title}</h2>
+          </a>
+        `;
+        container.appendChild(el);
+      });
+
+      ditampilkan += tampilAwal;
+      if (ditampilkan >= dataArtikel.length) {
+        document.querySelector(".lihat-selengkapnya").style.display = "none";
+      }
+    }
+
+    tampilkanLebihBanyak();
+  </script>
+</body>
+</html>
